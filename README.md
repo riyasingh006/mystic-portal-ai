@@ -1,26 +1,69 @@
-<p align="center">
-  <img src="screenshots/demo.png" width="850">
-</p>
+# 🌀 AI Magic Invisibility Portal v2.0
 
-# ✨ AI Magic Invisibility Portal
-
-A real-time AI-powered invisibility portal built using **Python**, **OpenCV**, and **MediaPipe**. The portal follows the user's index finger, dynamically changes size based on finger distance, and reveals the captured background inside the portal to create a magical invisibility effect.
+> A real-time AI-powered invisibility portal inspired by magical portal effects, built using Python, OpenCV, and MediaPipe.
 
 ---
 
-## 🚀 Features
+# 📌 Overview
 
-- 🪄 Real-time hand tracking using MediaPipe
-- 🎯 Portal follows the index finger
-- 📏 Dynamic portal size controlled by thumb-index distance
-- ✨ Smooth portal movement
-- 🌟 Glowing portal effect
-- 👻 Real-time invisibility illusion
-- ⚡ Fast performance using OpenCV
+AI Magic Invisibility Portal is an interactive computer vision project that creates a real-time magical portal effect using hand tracking and background replacement.
+
+The project detects the user's hand, follows its movement, and generates a Doctor Strange-inspired portal with animated visual effects such as rotating energy rings, fire particles, glowing effects, and an invisibility illusion.
+
+The portal also responds to different hand gestures, allowing users to change its size and switch between portal themes in real time.
 
 ---
 
-## 🛠️ Technologies Used
+# ✨ Features
+
+- ✅ Real-time Hand Tracking
+- ✅ AI-Controlled Portal
+- ✅ Background Invisibility Effect
+- ✅ Rotating Magic Portal Animation
+- ✅ Animated Energy Rings
+- ✅ Fire Edge Animation
+- ✅ Magic Aura Effect
+- ✅ Dynamic Particle System
+- ✅ Portal Distortion Effect
+- ✅ Dynamic Portal Scaling
+- ✅ Multiple Color Themes
+- ✅ Smooth Portal Movement
+- ✅ FPS Counter
+- ✅ Professional HUD Interface
+- ✅ Screenshot Support
+
+---
+
+# 🎥 Demo
+
+```
+assets/demo.mp4
+```
+
+---
+
+# 🖼️ Screenshots
+
+```
+### 🏠 Home Screen
+
+![Home](screenshots/home.png)
+
+---
+
+### 🌀 Magic Portal
+
+![Portal](screenshots/portal.png)
+
+---
+
+### 🎨 Theme Change
+
+![Theme](screenshots/theme.png)
+
+---
+
+# 🧠 Technologies Used
 
 - Python
 - OpenCV
@@ -29,55 +72,63 @@ A real-time AI-powered invisibility portal built using **Python**, **OpenCV**, a
 
 ---
 
-## 📂 Project Structure
+# 📂 Project Structure
 
-```
-AI-Magic-Invisibility-Portal/
+```text
+mystic-portal-ai/
+│
+├── src/
+│   ├── animation.py
+│   ├── background.py
+│   ├── camera.py
+│   ├── distortion.py
+│   ├── effects.py
+│   ├── gestures.py
+│   ├── hand_tracker.py
+│   ├── particles.py
+│   ├── portal.py
+│   ├── screenshot.py
+│   ├── themes.py
+│   └── utils.py
+│
+├── screenshots/
+│   ├── home.png
+│   ├── portal.png
+│   └── theme.png
+│
+├── assets/
+│   └── demo.mp4
 │
 ├── main.py
-├── portal.py
 ├── requirements.txt
 ├── README.md
-└── screenshots/
+├── LICENSE
+└── .gitignore
 ```
 
 ---
 
-## ⚙️ Installation
+# ⚙️ Installation
 
-### 1. Clone the repository
-
-```bash
-git clone https://github.com/YOUR_GITHUB_USERNAME/AI-Magic-Invisibility-Portal.git
-```
-
-### 2. Open the project
+### 1️⃣ Clone the Repository
 
 ```bash
-cd AI-Magic-Invisibility-Portal
+git clone https://github.com/riyasingh006/mystic-portal-ai.git
 ```
 
-### 3. Create a virtual environment
+### 2️⃣ Navigate to the Project Directory
 
 ```bash
-python -m venv venv
+cd mystic-portal-ai
 ```
 
-### 4. Activate it
-
-Windows
-
-```bash
-venv\Scripts\activate
-```
-
-### 5. Install dependencies
+### 3️⃣ Install Dependencies
 
 ```bash
 pip install -r requirements.txt
 ```
 
-### 6. Run
+### 4️⃣ Run the Project
 
 ```bash
 python main.py
@@ -85,41 +136,71 @@ python main.py
 
 ---
 
-## 📸 Demo
+# 🎮 Controls
 
-### Magic Portal
-
-> Add screenshots inside the **screenshots** folder.
-
-Example:
-
-```
-screenshots/
-    portal_demo1.png
-    portal_demo2.png
-```
+- **B** → Capture or Recapture Background
+- **T** → Change Portal Theme
+- **Q** → Quit the Application
 
 ---
 
-## 🎯 Future Improvements
+# ✋ Hand Gestures
 
-- Animated energy portal
-- Particle effects
-- Multiple portals
-- Gesture-based controls
-- Portal color customization
-- Background stabilization
+- **Open Palm** → Increase Portal Size
+- **Fist** → Decrease Portal Size
+- **OK Gesture** → Change Portal Theme
 
 ---
 
-## 👩‍💻 Developer
+# 🚀 Future Improvements
 
-**Sanya Rathore**
-
-GitHub: https://github.com/sanya-1612
+- Sound Effects
+- Multiple Portals
+- Gesture Recording
+- Voice Commands
+- 3D Particle Engine
+- Smoke Simulation
+- Video Recording
+- Portal Teleportation
+- AI Object Detection
+- AR Integration
 
 ---
 
-## ⭐ Support
+# 👩‍💻 Author
 
-If you like this project, consider giving it a ⭐ on GitHub.
+**Riya Singh**
+
+**Bachelor of Computer Applications (Artificial Intelligence & Machine Learning)**
+
+Passionate about Artificial Intelligence, Computer Vision, Machine Learning, and Modern Software Development.
+
+**GitHub**
+
+https://github.com/riyasingh006
+
+**LinkedIn**
+
+https://www.linkedin.com/in/riya-singh26/
+
+---
+
+# ⭐ Support
+
+If you found this project helpful, please consider:
+
+- ⭐ Starring the repository
+- 🍴 Forking the project
+- 📢 Sharing it with others
+
+---
+
+# 📜 License
+
+This project is licensed under the **MIT License**.
+
+---
+
+# 🌟 Quote
+
+> **"Turning Computer Vision into Magic with AI."**

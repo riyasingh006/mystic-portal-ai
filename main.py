@@ -1,160 +1,232 @@
 import cv2
-import mediapipe as mp
 import time
 
-from portal import Portal
+from src.camera import Camera
+from src.background import BackgroundManager
+from src.hand_tracker import HandTracker
+from src.portal import Portal
+from src.gestures import GestureRecognizer
 
-# ---------------- Camera ----------------
-cap = cv2.VideoCapture(0)
 
-if not cap.isOpened():
-    print("Cannot open camera")
-    exit()
+def main():
 
-# ---------------- MediaPipe ----------------
-mp_hands = mp.solutions.hands
+    # -----------------------------
+    # Initialize
+    # -----------------------------
 
-hands = mp_hands.Hands(
-    max_num_hands=1,
-    min_detection_confidence=0.7,
-    min_tracking_confidence=0.7
-)
+    camera = Camera()
 
-mp_draw = mp.solutions.drawing_utils
+    bg_manager = BackgroundManager()
 
-# ---------------- Background Capture ----------------
-print("Stand away from camera...")
+    tracker = HandTracker()
 
-for i in range(3, 0, -1):
-    print(i)
-    time.sleep(1)
+    gesture = GestureRecognizer()
 
-ret, background = cap.read()
+    portal = Portal()
 
-if not ret:
-    print("Failed to capture background.")
-    cap.release()
-    exit()
+    # -----------------------------
+    # Capture Background
+    # -----------------------------
 
-background = cv2.flip(background, 1)
+    if not bg_manager.capture(camera):
 
-# ---------------- Portal ----------------
-portal = Portal(radius=120)
+        print("Background Capture Failed")
 
-while True:
+        return
 
-    ret, frame = cap.read()
+    print("\nAI Magic Portal Started Successfully\n")
 
-    if not ret:
-        break
+    # -----------------------------
+    # Variables
+    # -----------------------------
 
-    frame = cv2.flip(frame, 1)
+    current_gesture = "NONE"
 
-    rgb = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+    prev_time = time.time()
 
-    results = hands.process(rgb)
+    fps = 0
 
-    h, w = frame.shape[:2]
+    # -----------------------------
+    # Main Loop
+    # -----------------------------
 
-    if results.multi_hand_landmarks:
+    while True:
 
-        hand = results.multi_hand_landmarks[0]
+        frame = camera.read()
 
-        mp_draw.draw_landmarks(
+        if frame is None:
+            break
+
+        current_gesture = "NONE"
+
+        hand = tracker.detect(frame)
+
+        if hand:
+
+            portal.update(
+
+                hand["x"],
+                hand["y"],
+                hand["radius"]
+
+            )
+
+            current_gesture = gesture.recognize(
+
+                hand["landmarks"]
+
+            )
+
+            # -----------------------------
+            # Gesture Controls
+            # -----------------------------
+
+            if current_gesture == "OPEN":
+
+                portal.increase_size()
+
+            elif current_gesture == "FIST":
+
+                portal.decrease_size()
+
+            elif current_gesture == "OK":
+
+                portal.next_theme()
+
+        frame = portal.draw(
+
             frame,
-            hand,
-            mp_hands.HAND_CONNECTIONS
+            bg_manager.get_background()
+
         )
 
-        # Index Finger
-        tip = hand.landmark[8]
+                # -----------------------------
+        # FPS
+        # -----------------------------
 
-        # Thumb
-        thumb = hand.landmark[4]
+        current_time = time.time()
 
-        # Portal Position
-        x = int(tip.x * w)
-        y = int(tip.y * h)
+        fps = int(
+            1 / (current_time - prev_time + 0.0001)
+        )
 
-        portal.update(x, y)
+        prev_time = current_time
 
-        # Portal Radius
-        distance = ((tip.x - thumb.x) ** 2 + (tip.y - thumb.y) ** 2) ** 0.5
+        # -----------------------------
+        # Professional HUD
+        # -----------------------------
 
-        radius = int(distance * 500)
+        cv2.putText(
+            frame,
+            "AI Magic Portal v2.0",
+            (20, 35),
+            cv2.FONT_HERSHEY_DUPLEX,
+            0.9,
+            (255, 255, 255),
+            2
+        )
 
-        portal.set_radius(radius)
+        cv2.putText(
+            frame,
+            f"FPS : {fps}",
+            (20, 70),
+            cv2.FONT_HERSHEY_SIMPLEX,
+            0.7,
+            (0, 255, 0),
+            2
+        )
 
-    # ---------------- Draw Portal ----------------
-    frame = portal.draw(frame, background)
+        cv2.putText(
+            frame,
+            f"Gesture : {current_gesture}",
+            (20, 105),
+            cv2.FONT_HERSHEY_SIMPLEX,
+            0.7,
+            (0, 200, 255),
+            2
+        )
 
-    # ---------------- Title ----------------
-    cv2.putText(
-        frame,
-        "AI Magic Invisibility Portal",
-        (20, 40),
-        cv2.FONT_HERSHEY_DUPLEX,
-        0.9,
-        (255, 255, 255),
-        2,
-        cv2.LINE_AA
-    )
+        cv2.putText(
+            frame,
+            "Move your hand to control the portal",
+            (20, 140),
+            cv2.FONT_HERSHEY_SIMPLEX,
+            0.6,
+            (255, 255, 255),
+            2
+        )
 
-    # ---------------- Developer ----------------
-    cv2.putText(
-        frame,
-        "Developed by Sanya Rathore",
-        (20, 70),
-        cv2.FONT_HERSHEY_SIMPLEX,
-        0.6,
-        (0, 255, 255),
-        2,
-        cv2.LINE_AA
-    )
+        cv2.putText(
+            frame,
+            "B : Capture Background",
+            (20, 170),
+            cv2.FONT_HERSHEY_SIMPLEX,
+            0.6,
+            (255, 255, 255),
+            2
+        )
 
-    # ---------------- Controls ----------------
-    cv2.putText(
-        frame,
-        "Move Index Finger | Thumb = Portal Size | Press B = Capture Background",
-        (20, 100),
-        cv2.FONT_HERSHEY_SIMPLEX,
-        0.55,
-        (200, 200, 200),
-        1,
-        cv2.LINE_AA
-    )
+        cv2.putText(
+            frame,
+            "T : Change Theme",
+            (20, 200),
+            cv2.FONT_HERSHEY_SIMPLEX,
+            0.6,
+            (255, 255, 255),
+            2
+        )
 
-    # ---------------- Watermark ----------------
-    cv2.putText(
-        frame,
-        "© Sanya Rathore",
-        (frame.shape[1] - 190, frame.shape[0] - 20),
-        cv2.FONT_HERSHEY_SIMPLEX,
-        0.6,
-        (180, 180, 180),
-        2,
-        cv2.LINE_AA
-    )
+        cv2.putText(
+            frame,
+            "Q : Quit",
+            (20, 230),
+            cv2.FONT_HERSHEY_SIMPLEX,
+            0.6,
+            (255, 255, 255),
+            2
+        )
 
-    cv2.imshow("AI Magic Invisibility Portal", frame)
+        # -----------------------------
+        # Show Window
+        # -----------------------------
 
-    key = cv2.waitKey(1) & 0xFF
+        cv2.imshow(
+            "AI Magic Invisibility Portal",
+            frame
+        )
 
-    # ---------------- Re-Capture Background ----------------
-    if key == ord("b"):
+        # -----------------------------
+        # Keyboard
+        # -----------------------------
 
-        print("Stand away from camera...")
-        time.sleep(2)
+        key = cv2.waitKey(1) & 0xFF
 
-        ret, bg = cap.read()
+        if key == ord("b"):
 
-        if ret:
-            background = cv2.flip(bg, 1)
-            print("Background Updated Successfully!")
+            bg_manager.capture(camera)
 
-    # ---------------- Quit ----------------
-    if key == ord("q"):
-        break
+        elif key == ord("t"):
 
-cap.release()
-cv2.destroyAllWindows()
+            portal.next_theme()
+
+        elif key == ord("q"):
+
+            break
+            # -----------------------------
+    # Cleanup
+    # -----------------------------
+
+    tracker.close()
+
+    camera.release()
+
+    cv2.destroyAllWindows()
+
+
+# -----------------------------
+# Run Program
+# -----------------------------
+
+if __name__ == "__main__":
+
+    main()
