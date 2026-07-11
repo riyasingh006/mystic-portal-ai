@@ -37,8 +37,8 @@ The portal also responds to different hand gestures, allowing users to change it
 #🎥 Demo Video
 
 <p align="center">
-<a href="https://youtu.be/gxccFi13qGE">
-<img src="screenshots/home.png" width="90%">
+<a href="https://youtu.be/bZiPjjTr1Js?si=7c12GY18xLiD31F2">
+<img src="screenshots/demo-thumbnail.png" width="90%">
 </a>
 </p>
 
