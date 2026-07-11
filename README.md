@@ -34,17 +34,18 @@ The portal also responds to different hand gestures, allowing users to change it
 
 ---
 
-## 🎥 Demo Video
+#🎥 Demo Video
 
 <p align="center">
-  <a href="assets/demo.mp4">
-    <img src="screenshots/demo-thumbnail.png" width="80%" alt="Demo Video">
-  </a>
+<a href="https://youtu.be/gxccFi13qGE">
+<img src="screenshots/home.png" width="90%">
+</a>
 </p>
 
 <p align="center">
-<b>👆 Click the image to watch the demo video</b>
+<b>▶ Click the image to watch the full demo</b>
 </p>
+
 
 # 🖼️ Screenshots
 
