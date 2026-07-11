@@ -46,18 +46,15 @@ assets/demo.mp4
 
 ## 🏠 Home
 
-AI-Magic-Invisibility-Portal\screenshots\home.png
-
+![Home](screenshots/home.png)
 
 ## 🌀 Portal
 
-AI-Magic-Invisibility-Portal\screenshots\portal.png
-
+![Portal](screenshots/portal.png)
 
 ## ✋ Gesture Detection
 
-AI-Magic-Invisibility-Portal\screenshots\gesture.png
----
+![Gesture](screenshots/gesture.png)
 
 # 🧠 Technologies Used
 
