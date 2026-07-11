@@ -44,30 +44,20 @@ assets/demo.mp4
 
 # 🖼️ Screenshots
 
-```
-# 🖼️ Screenshots
-
 ## 🏠 Home
 
-<p align="center">
-  <img src="screenshots/home.png" width="80%" alt="Home Screenshot">
-</p>
+AI-Magic-Invisibility-Portal\screenshots\home.png
 
 
 ## 🌀 Portal
 
-<p align="center">
-  <img src="screenshots/portal.png" width="80%" alt="Portal Screenshot">
-</p>
+AI-Magic-Invisibility-Portal\screenshots\portal.png
+
 
 ## ✋ Gesture Detection
 
-<p align="center">
-  <img src="screenshots/gesture.png" width="80%" alt="Gesture Detection">
-</p>
-
+AI-Magic-Invisibility-Portal\screenshots\gesture.png
 ---
-
 
 # 🧠 Technologies Used
 
