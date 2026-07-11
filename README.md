@@ -45,15 +45,36 @@ assets/demo.mp4
 # 🖼️ Screenshots
 
 ```
-screenshots/home.png
+# 🖼️ Screenshots
 
-screenshots/portal.png
+## 🏠 Home
 
-screenshots/theme.png
+<p align="center">
+  <a href="home.png">
+    <img src="screenshots/home.png" width="80%" alt="Home Screenshot">
+  </a>
+</p>
 
-screenshots/gesture.png
-```
+---
 
+## 🌀 Portal
+
+<p align="center">
+  <a href="screenshots/portal.png">
+    <img src="screenshots/portal.png" width="80%" alt="Portal Screenshot">
+  </a>
+</p>
+---
+
+## ✋ Gesture Detection
+
+<p align="center">
+  <a href="screenshots/gesture.png">
+    <img src="screenshots/gesture.png" width="80%" alt="Gesture Screenshot">
+  </a>
+</p>
+
+---
 ---
 
 # 🧠 Technologies Used
